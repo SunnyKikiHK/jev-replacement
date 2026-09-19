@@ -1,0 +1,6 @@
+{
+  "accuracy_delta": 0.1,
+  "macro_f1_delta": 0.0972,
+  "latency_p50_ratio": 0.3746,
+  "cost_ratio": 1.52
+}

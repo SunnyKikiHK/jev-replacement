@@ -26,7 +26,8 @@ The command writes `evaluation-llm.json`.
 
 ## Jev replacement
 
-After the replacement is implemented:
+The migration design and acceptance gate are recorded in `migration-plan.md`.
+The replacement is implemented in `jev_classifier.py`:
 
 ```bash
 python evaluate.py --mode jev
@@ -43,3 +44,7 @@ python evaluate.py --mode compare
 The OpenRouter key is read from the repository-level `.env` file or the
 `OPENROUTER_API_KEY` environment variable.
 
+The LLM implementation remains available as the rollback path.
+
+The measured outcome and acceptance-gate decision are recorded in
+`evaluation.md`.
