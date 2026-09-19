@@ -1,0 +1,323 @@
+{
+  "mode": "llm",
+  "dataset_size": 20,
+  "metrics": {
+    "total": 20,
+    "correct": 19,
+    "accuracy": 0.95,
+    "macro_precision": 0.9583,
+    "macro_recall": 0.95,
+    "macro_f1": 0.9495,
+    "provider_errors": 0,
+    "missing_predictions": 0,
+    "latency_ms": {
+      "mean": 1590.93,
+      "p50": 606.34,
+      "p95": 8844.79
+    },
+    "cost_usd": {
+      "total": 0.0003148,
+      "mean_per_request": 1.574e-05
+    },
+    "confidence": {
+      "mean": null,
+      "accepted_at_0_8": 0,
+      "coverage_at_0_8": 0.0,
+      "accuracy_at_0_8": null
+    },
+    "per_label": {
+      "account": {
+        "precision": 1.0,
+        "recall": 0.8,
+        "f1": 0.8889,
+        "support": 5
+      },
+      "billing": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      },
+      "bug": {
+        "precision": 0.8333,
+        "recall": 1.0,
+        "f1": 0.9091,
+        "support": 5
+      },
+      "feature_request": {
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "support": 5
+      }
+    },
+    "prediction_counts": {
+      "billing": 5,
+      "account": 4,
+      "bug": 6,
+      "feature_request": 5
+    }
+  },
+  "results": [
+    {
+      "id": "billing-duplicate",
+      "text": "I was charged twice for my subscription. Please refund the duplicate charge.",
+      "expected": "billing",
+      "predicted": "billing",
+      "confidence": null,
+      "latency_ms": 1066.0,
+      "input_tokens": 87,
+      "output_tokens": 6,
+      "cost_usd": 1.892e-05,
+      "raw_response": "{\"label\":\"billing\"}",
+      "error": null
+    },
+    {
+      "id": "billing-invoice",
+      "text": "Can you send me an invoice for last month's payment?",
+      "expected": "billing",
+      "predicted": "billing",
+      "confidence": null,
+      "latency_ms": 529.92,
+      "input_tokens": 66,
+      "output_tokens": 6,
+      "cost_usd": 1.131e-05,
+      "raw_response": "{\"label\":\"billing\"}",
+      "error": null
+    },
+    {
+      "id": "billing-cancel",
+      "text": "I want to cancel my Pro subscription at the end of the billing period.",
+      "expected": "billing",
+      "predicted": "billing",
+      "confidence": null,
+      "latency_ms": 485.24,
+      "input_tokens": 88,
+      "output_tokens": 6,
+      "cost_usd": 1.432e-05,
+      "raw_response": "{\"label\":\"billing\"}",
+      "error": null
+    },
+    {
+      "id": "billing-declined",
+      "text": "My card was declined, but the app still says the payment succeeded.",
+      "expected": "billing",
+      "predicted": "billing",
+      "confidence": null,
+      "latency_ms": 638.87,
+      "input_tokens": 68,
+      "output_tokens": 6,
+      "cost_usd": 1.158e-05,
+      "raw_response": "{\"label\":\"billing\"}",
+      "error": null
+    },
+    {
+      "id": "billing-proration",
+      "text": "Why does the invoice show a prorated line item after my plan change?",
+      "expected": "billing",
+      "predicted": "billing",
+      "confidence": null,
+      "latency_ms": 517.56,
+      "input_tokens": 70,
+      "output_tokens": 6,
+      "cost_usd": 1.185e-05,
+      "raw_response": "{\"label\":\"billing\"}",
+      "error": null
+    },
+    {
+      "id": "account-password",
+      "text": "I forgot my password and the reset email never arrived.",
+      "expected": "account",
+      "predicted": "account",
+      "confidence": null,
+      "latency_ms": 8844.79,
+      "input_tokens": 64,
+      "output_tokens": 6,
+      "cost_usd": 8.32e-06,
+      "raw_response": "{\"label\":\"account\"}",
+      "error": null
+    },
+    {
+      "id": "account-email",
+      "text": "How do I change the email address on my account?",
+      "expected": "account",
+      "predicted": "account",
+      "confidence": null,
+      "latency_ms": 479.3,
+      "input_tokens": 84,
+      "output_tokens": 6,
+      "cost_usd": 1.832e-05,
+      "raw_response": "{\"label\":\"account\"}",
+      "error": null
+    },
+    {
+      "id": "account-permission",
+      "text": "I need to give my teammate admin permission.",
+      "expected": "account",
+      "predicted": "account",
+      "confidence": null,
+      "latency_ms": 725.21,
+      "input_tokens": 63,
+      "output_tokens": 6,
+      "cost_usd": 1.0905e-05,
+      "raw_response": "{\"label\":\"account\"}",
+      "error": null
+    },
+    {
+      "id": "account-2fa",
+      "text": "I'm locked out because two-factor authentication codes are rejected.",
+      "expected": "account",
+      "predicted": "bug",
+      "confidence": null,
+      "latency_ms": 606.34,
+      "input_tokens": 85,
+      "output_tokens": 6,
+      "cost_usd": 1.372e-05,
+      "raw_response": "{\"label\":\"bug\"}",
+      "error": null
+    },
+    {
+      "id": "account-suspended",
+      "text": "My account was suspended after I changed my recovery phone.",
+      "expected": "account",
+      "predicted": "account",
+      "confidence": null,
+      "latency_ms": 414.67,
+      "input_tokens": 65,
+      "output_tokens": 6,
+      "cost_usd": 1.73e-05,
+      "raw_response": "{\"label\":\"account\"}",
+      "error": null
+    },
+    {
+      "id": "bug-export",
+      "text": "The app crashes whenever I export a report to PDF.",
+      "expected": "bug",
+      "predicted": "bug",
+      "confidence": null,
+      "latency_ms": 6057.11,
+      "input_tokens": 64,
+      "output_tokens": 6,
+      "cost_usd": 8.32e-06,
+      "raw_response": "{\"label\":\"bug\"}",
+      "error": null
+    },
+    {
+      "id": "bug-save",
+      "text": "The Save button does nothing after I edit my profile.",
+      "expected": "bug",
+      "predicted": "bug",
+      "confidence": null,
+      "latency_ms": 513.5,
+      "input_tokens": 64,
+      "output_tokens": 5,
+      "cost_usd": 3.33e-05,
+      "raw_response": "{\"label\":\"bug\"}",
+      "error": null
+    },
+    {
+      "id": "bug-sync",
+      "text": "My data stopped syncing between desktop and mobile yesterday.",
+      "expected": "bug",
+      "predicted": "bug",
+      "confidence": null,
+      "latency_ms": 773.66,
+      "input_tokens": 64,
+      "output_tokens": 6,
+      "cost_usd": 1.104e-05,
+      "raw_response": "{\"label\":\"bug\"}",
+      "error": null
+    },
+    {
+      "id": "bug-chart",
+      "text": "The dashboard shows a blank chart even though records exist.",
+      "expected": "bug",
+      "predicted": "bug",
+      "confidence": null,
+      "latency_ms": 6033.16,
+      "input_tokens": 64,
+      "output_tokens": 6,
+      "cost_usd": 8.32e-06,
+      "raw_response": "{\"label\":\"bug\"}",
+      "error": null
+    },
+    {
+      "id": "bug-reset-link",
+      "text": "The 'Forgot password' link returns a 500 error.",
+      "expected": "bug",
+      "predicted": "bug",
+      "confidence": null,
+      "latency_ms": 376.74,
+      "input_tokens": 65,
+      "output_tokens": 6,
+      "cost_usd": 8.42e-06,
+      "raw_response": "{\"label\":\"bug\"}",
+      "error": null
+    },
+    {
+      "id": "feature-dark-mode",
+      "text": "Please add a dark mode to the mobile app.",
+      "expected": "feature_request",
+      "predicted": "feature_request",
+      "confidence": null,
+      "latency_ms": 1216.73,
+      "input_tokens": 63,
+      "output_tokens": 7,
+      "cost_usd": 8.54e-06,
+      "raw_response": "{\"label\":\"feature_request\"}",
+      "error": null
+    },
+    {
+      "id": "feature-sso",
+      "text": "Can you support SSO with Okta?",
+      "expected": "feature_request",
+      "predicted": "feature_request",
+      "confidence": null,
+      "latency_ms": 1170.05,
+      "input_tokens": 82,
+      "output_tokens": 7,
+      "cost_usd": 1.364e-05,
+      "raw_response": "{\"label\":\"feature_request\"}",
+      "error": null
+    },
+    {
+      "id": "feature-import",
+      "text": "I'd like to bulk import contacts from a CSV file.",
+      "expected": "feature_request",
+      "predicted": "feature_request",
+      "confidence": null,
+      "latency_ms": 272.39,
+      "input_tokens": 85,
+      "output_tokens": 7,
+      "cost_usd": 5.568e-05,
+      "raw_response": "{\"label\":\"feature_request\"}",
+      "error": null
+    },
+    {
+      "id": "feature-slack",
+      "text": "Could you add Slack notifications for failed jobs?",
+      "expected": "feature_request",
+      "predicted": "feature_request",
+      "confidence": null,
+      "latency_ms": 506.2,
+      "input_tokens": 63,
+      "output_tokens": 7,
+      "cost_usd": 1.736e-05,
+      "raw_response": "{\"label\":\"feature_request\"}",
+      "error": null
+    },
+    {
+      "id": "feature-webhooks",
+      "text": "Can we get webhook support for payment events?",
+      "expected": "feature_request",
+      "predicted": "feature_request",
+      "confidence": null,
+      "latency_ms": 591.11,
+      "input_tokens": 82,
+      "output_tokens": 7,
+      "cost_usd": 1.364e-05,
+      "raw_response": "{\"label\":\"feature_request\"}",
+      "error": null
+    }
+  ]
+}

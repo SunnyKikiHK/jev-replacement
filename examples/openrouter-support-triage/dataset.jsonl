@@ -1,0 +1,21 @@
+{"id":"billing-duplicate","text":"I was charged twice for my subscription. Please refund the duplicate charge.","label":"billing"}
+{"id":"billing-invoice","text":"Can you send me an invoice for last month's payment?","label":"billing"}
+{"id":"billing-cancel","text":"I want to cancel my Pro subscription at the end of the billing period.","label":"billing"}
+{"id":"billing-declined","text":"My card was declined, but the app still says the payment succeeded.","label":"billing"}
+{"id":"billing-proration","text":"Why does the invoice show a prorated line item after my plan change?","label":"billing"}
+{"id":"account-password","text":"I forgot my password and the reset email never arrived.","label":"account"}
+{"id":"account-email","text":"How do I change the email address on my account?","label":"account"}
+{"id":"account-permission","text":"I need to give my teammate admin permission.","label":"account"}
+{"id":"account-2fa","text":"I'm locked out because two-factor authentication codes are rejected.","label":"account"}
+{"id":"account-suspended","text":"My account was suspended after I changed my recovery phone.","label":"account"}
+{"id":"bug-export","text":"The app crashes whenever I export a report to PDF.","label":"bug"}
+{"id":"bug-save","text":"The Save button does nothing after I edit my profile.","label":"bug"}
+{"id":"bug-sync","text":"My data stopped syncing between desktop and mobile yesterday.","label":"bug"}
+{"id":"bug-chart","text":"The dashboard shows a blank chart even though records exist.","label":"bug"}
+{"id":"bug-reset-link","text":"The 'Forgot password' link returns a 500 error.","label":"bug"}
+{"id":"feature-dark-mode","text":"Please add a dark mode to the mobile app.","label":"feature_request"}
+{"id":"feature-sso","text":"Can you support SSO with Okta?","label":"feature_request"}
+{"id":"feature-import","text":"I'd like to bulk import contacts from a CSV file.","label":"feature_request"}
+{"id":"feature-slack","text":"Could you add Slack notifications for failed jobs?","label":"feature_request"}
+{"id":"feature-webhooks","text":"Can we get webhook support for payment events?","label":"feature_request"}
+

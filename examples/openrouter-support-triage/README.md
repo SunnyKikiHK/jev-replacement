@@ -1,0 +1,45 @@
+# OpenRouter Support Triage
+
+This example compares a normal OpenRouter chat model with TypeSafe Jev for a
+small support-ticket classification task.
+
+The baseline uses `meta-llama/llama-3.3-70b-instruct` through the OpenRouter
+chat-completions API. The replacement uses Jev through OpenRouter's Decisions
+API.
+
+## Dataset
+
+`dataset.jsonl` contains support messages with one of four labels:
+
+- `account`
+- `billing`
+- `bug`
+- `feature_request`
+
+## Baseline
+
+```bash
+python evaluate.py --mode llm
+```
+
+The command writes `evaluation-llm.json`.
+
+## Jev replacement
+
+After the replacement is implemented:
+
+```bash
+python evaluate.py --mode jev
+```
+
+The command writes `evaluation-jev.json`.
+
+To run both in one process and print a comparison:
+
+```bash
+python evaluate.py --mode compare
+```
+
+The OpenRouter key is read from the repository-level `.env` file or the
+`OPENROUTER_API_KEY` environment variable.
+
