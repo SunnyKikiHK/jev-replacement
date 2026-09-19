@@ -57,6 +57,71 @@ Ask one narrow judgment per question. Independent questions over the same state
 should be sent together because they run in parallel and cannot see each other's
 answers.
 
+Example `score` question for query-passage relevance:
+
+```json
+{
+  "model": "jev-latest",
+  "state": {
+    "query": "What is the refund window?",
+    "passage": "Refunds are available within 30 days of purchase."
+  },
+  "questions": {
+    "relevance": {
+      "type": "score",
+      "instructions": "How directly does `passage` answer `query`?",
+      "criteria": [
+        "Irrelevant to the query.",
+        "Topically related but does not answer it.",
+        "Partially answers the query.",
+        "Directly answers the query.",
+        "Contains sufficient evidence for a grounded answer."
+      ]
+    }
+  }
+}
+```
+
+The response returns a continuous `score`, ordered `legend`, probabilities for
+the levels, and confidence. Code should sort or threshold those values; Jev must
+not generate the passage or compute embedding similarity.
+
+Example score response:
+
+```json
+{
+  "answers": {
+    "relevance": {
+      "type": "score",
+      "score": 3.74,
+      "legend": {
+        "0": "Irrelevant to the query.",
+        "1": "Topically related but does not answer it.",
+        "2": "Partially answers the query.",
+        "3": "Directly answers the query.",
+        "4": "Contains sufficient evidence for a grounded answer."
+      },
+      "probabilities": {
+        "0": 0.0,
+        "1": 0.03,
+        "2": 0.11,
+        "3": 0.72,
+        "4": 0.14
+      },
+      "confidence": 0.76
+    }
+  }
+}
+```
+
+The score is continuous and may fall between levels. Thresholds must be selected
+from target-domain data. For multiple candidates, prefer assigning candidate IDs
+in `state` and asking one independent score question per candidate in the same
+request when the combined state and questions fit the context budget. Code then
+maps question IDs to candidate IDs and sorts the scores. Benchmark that batched
+design against separate requests; do not assume either form is cheaper without
+measurement.
+
 ## Response Shape
 
 ```json
@@ -131,4 +196,3 @@ Handle these categories explicitly:
   path.
 
 Never retry authorization failures or invalid schemas indefinitely.
-

@@ -1,6 +1,6 @@
 ---
 name: jev-replacement
-description: Assess an existing project for replacing brittle semantic if/else rules, classifiers, embeddings, or LLM prompt-and-parse steps with TypeSafe Jev; produce a migration plan, implement the replacement, and evaluate before-and-after performance. Use when the user asks to adopt Jev or explicitly test whether Jev should replace classification, routing, scoring, ranking, verification, moderation, or bounded candidate selection.
+description: Evaluate whether TypeSafe's Jev decision model should replace or augment bounded semantic decisions currently handled by brittle if/else rules, trained classifiers such as BERT, embedding rerankers, or LLM prompt-and-parse steps. Use when the user asks whether Jev fits classification, routing, scoring, ranking, moderation, verification, or candidate selection, or requests a Jev migration plan, shadow test, implementation, and before-and-after evaluation. A keep, hybrid, or reject decision is valid when deterministic code, local latency, fixed GPU economics, privacy, or availability make migration inappropriate; generic model swaps that do not involve Jev should not trigger this skill.
 ---
 
 # Jev Replacement
@@ -9,11 +9,27 @@ Migrate only the parts of an existing project where Jev is a better fit than the
 current implementation. Treat migration as a measured refactor, not a wholesale
 rewrite.
 
+## Decision Outcomes
+
+The correct outcome may be:
+
+- **Keep**: Jev is not a safe or useful replacement.
+- **Shadow test**: structural fit is promising, but operational or quality
+  evidence is incomplete.
+- **Hybrid**: Jev handles bounded or uncertain cases while the existing model
+  remains primary.
+- **Migrate**: the measured acceptance gate passes and rollback is understood.
+
+Do not force a migration. If no candidate passes the fit checks, stop with a
+no-change report and explain what evidence would change the decision.
+
 ## Required Outcomes
 
-Deliver all of these when the user authorizes implementation:
+Deliver all of these when the user authorizes implementation and the evidence
+supports migration:
 
-1. A candidate inventory with a fit decision for each workflow.
+1. A candidate inventory with a keep, shadow-test, hybrid, or migrate decision
+   for each workflow.
 2. A baseline measurement before replacing behavior.
 3. A migration plan with preserved interfaces, fallback behavior, and rollback.
 4. The implementation, with questions and thresholds centralized and reviewable.
@@ -51,7 +67,25 @@ Do not recommend Jev merely because the current implementation is an LLM. Compar
 the actual decision shape and deployment constraints. A simple static mapping may
 need no model at all.
 
-### 3. Design the Jev Boundary
+### 3. Check Operational Fit
+
+Structural fit is not deployment fit. Before choosing a migration, compare the
+current and proposed paths across:
+
+- p50, p95, and p99 end-to-end latency, including network round trips, queueing,
+  retries, and fallback;
+- fully loaded cost, including owned GPU capacity, provider tokens, monitoring,
+  operations, and failure recovery;
+- data residency, privacy, offline operation, provider availability, and outage
+  behavior;
+- peak concurrency and request volume rather than average throughput alone;
+- token growth from state, criteria, and large choice sets.
+
+A remote Jev call may be a poor replacement for a low-latency colocated model even
+when its semantic fit is excellent. In that case, prefer shadow testing, a hybrid
+boundary, or keeping the existing implementation.
+
+### 4. Design the Jev Boundary
 
 Choose the smallest workflow that can be measured independently. Preserve the
 existing public interface and add a provider adapter behind it so rollback is a
@@ -66,11 +100,15 @@ For each candidate, define:
 - fallback behavior for uncertainty, provider errors, and out-of-distribution input.
 - whether the replacement runs in shadow mode, a canary, or a full rollout.
 
+For large choice sets, measure criteria-token growth and latency. Test grouped,
+hierarchical, or independent judgments before assuming one request is the best
+design.
+
 Read [references/jev-api.md](references/jev-api.md) before writing integration
 code. Recheck the live TypeSafe or OpenRouter documentation when exact model IDs,
 limits, or schemas matter.
 
-### 4. Plan Before Implementing
+### 5. Plan Before Implementing
 
 Produce a compact plan containing:
 
@@ -83,9 +121,10 @@ Produce a compact plan containing:
 - implementation and verification steps.
 
 Prefer one candidate per migration commit. Do not remove the old path until the
-acceptance gate passes.
+acceptance gate passes. Reserve evaluation data that was not used to tune the
+questions or thresholds.
 
-### 5. Implement
+### 6. Implement
 
 Use the project's existing language, dependency policy, error handling, and test
 patterns. Centralize question definitions and thresholds in one reviewable module.
@@ -95,7 +134,7 @@ For a quick provider-neutral HTTP client, use
 [scripts/jev_client.py](scripts/jev_client.py). For a first-pass candidate scan,
 use [scripts/scan_candidates.py](scripts/scan_candidates.py).
 
-### 6. Evaluate and Decide
+### 7. Evaluate and Decide
 
 Run baseline and candidate implementations over the same cases. Compare task
 quality, calibration or coverage, latency, cost, and failure modes. Treat Jev's
@@ -104,10 +143,13 @@ schema safety as an interface guarantee, not evidence that a decision is correct
 Use [references/evaluation.md](references/evaluation.md) to choose metrics and
 interpret results. Use
 [scripts/evaluate_predictions.py](scripts/evaluate_predictions.py) when prediction
-files are available.
+files are available, or [scripts/evaluate_rankings.py](scripts/evaluate_rankings.py)
+for reranking and retrieval comparisons.
 
 If the gate fails, keep the old implementation, report the failure, and adjust the
 question design, thresholds, state, or candidate choice before trying again.
+For claims that one implementation is better, report sample size and uncertainty;
+a small point-estimate improvement is not enough.
 
 ## Guardrails
 
@@ -121,4 +163,6 @@ question design, thresholds, state, or candidate choice before trying again.
   code and documented consequences.
 - Do not delete the baseline implementation until rollback and production behavior
   are understood.
-
+- Challenge broad requests such as "make the whole workflow AI-driven." Decompose
+  them and preserve deterministic boundaries for payments, permissions, compliance,
+  arithmetic, and side effects.

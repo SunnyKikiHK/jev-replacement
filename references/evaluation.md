@@ -44,10 +44,29 @@ baseline.
 ### Operations
 
 - p50 and p95 end-to-end latency;
+- p99 latency and peak-concurrency behavior when the service is latency-critical;
 - mean and total cost;
 - provider error rate;
 - retry rate;
 - fallback or escalation rate.
+
+## Samples, Splits, and Uncertainty
+
+Use a locked evaluation split that was not used to tune questions, criteria, or
+thresholds. For a high-volume model replacement, a small point-estimate win is
+not enough to claim improvement.
+
+- Report the number of examples and class balance.
+- Use paired comparisons on the same cases.
+- Add a confidence interval for the primary quality metric when sample size
+  permits.
+- Check per-class or per-segment regressions, especially severe errors.
+- Keep a separate threshold-selection split when confidence gating is used.
+- Re-test on production-like language, length, and distribution shifts.
+
+The bundled evaluator is a starting point. For large evaluations, add bootstrap
+confidence intervals, expected calibration error, p99 latency, and per-label
+regression deltas.
 
 ## Acceptance Gate
 
@@ -111,3 +130,16 @@ python scripts/evaluate_predictions.py \
   --output comparison.json
 ```
 
+For reranking or retrieval, use:
+
+```bash
+python scripts/evaluate_rankings.py \
+  --gold ranked-gold.jsonl \
+  --baseline baseline-ranked.jsonl \
+  --candidate jev-ranked.jsonl \
+  --k 1,5,8,10 \
+  --output ranking-comparison.json
+```
+
+The ranking script reports Recall@K, precision@K, MRR@K, NDCG@K, and severe
+evidence misses, plus latency and cost when present.

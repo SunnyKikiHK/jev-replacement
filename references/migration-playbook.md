@@ -50,6 +50,55 @@ candidates.
 - Decisions that require a global structural invariant across separate answers.
 - Workflows with no representative evaluation data and no safe fallback.
 
+## Operational Fit
+
+Structural fit does not settle deployment fit. For high-volume or latency-critical
+services, record:
+
+- p50, p95, and p99 end-to-end latency under realistic concurrency;
+- network round-trip, queueing, retry, timeout, and fallback overhead;
+- fully loaded cost, including owned GPU depreciation, power, hosting, and
+  operations;
+- whether retiring or reallocating the old capacity is actually possible;
+- data residency, privacy, offline, and provider-availability requirements;
+- token growth from state, criteria, and large choice sets;
+- the projected monthly cost at real request volume.
+
+Use **keep** or **hybrid** when fixed local capacity is cheaper, the existing
+p95 is below a practical remote-API floor, the data cannot leave the environment,
+or provider outages cannot be tolerated.
+
+For large choice sets, benchmark one large `choice` against grouped or
+hierarchical questions. More criteria increase input tokens and can reduce
+accuracy as the state grows.
+
+## Retrieval and Reranking
+
+Do not treat "replace embeddings with Jev" as one candidate. Inventory the stages:
+
+| Stage | Jev decision |
+| --- | --- |
+| Document or query embedding | Keep; Jev does not produce embedding vectors. |
+| ANN/vector index and top-K retrieval | Keep; Jev cannot index or search the corpus. |
+| Cross-encoder reranking | Conditional; test `score` or `choice` on a bounded shortlist. |
+| Answer generation | Keep; Jev is not generative. |
+| Citation or support verification | Conditional `noul` candidate. |
+
+For reranking, measure calls per query. If each candidate needs a separate call,
+calculate cost and latency for the full shortlist. Prefer a smaller shortlist,
+a hybrid reranker, or grouped candidate judgments when one call per candidate is
+not viable.
+
+When several candidates fit one request, put a bounded candidate array in
+`state`, ask one independent score question per candidate, and map the answer IDs
+back to candidate IDs in code. Measure the actual token budget, latency, and
+accuracy against separate calls.
+
+Define disagreement behavior before rollout. When Jev and the old reranker return
+different top-K lists, choose one policy: old model primary, Jev primary, union of
+both lists, Jev as tie-breaker, or human review for material disagreement. Keep
+the policy in code and evaluate it as part of the gate.
+
 ## Candidate Record
 
 For each candidate, record:
@@ -152,4 +201,3 @@ code. Never ask Jev to generate an exact value when it can select one.
 4. Monitor quality, fallback rate, latency, and cost.
 5. Remove the old path only after the acceptance gate passes and rollback is no
    longer operationally needed.
-

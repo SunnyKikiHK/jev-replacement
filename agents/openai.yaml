@@ -1,7 +1,7 @@
 interface:
   display_name: "Jev Replacement"
-  short_description: "Assess, migrate, and evaluate Jev replacements"
-  default_prompt: "Use $jev-replacement to assess this project, migrate the best candidate workflow to TypeSafe Jev, and evaluate it before and after."
+  short_description: "Evaluate Jev fit, shadow tests, and safe migrations"
+  default_prompt: "Use $jev-replacement to assess whether Jev fits this workflow; keep, shadow-test, hybridize, or migrate it, then benchmark the result."
 policy:
   allow_implicit_invocation: true
 
