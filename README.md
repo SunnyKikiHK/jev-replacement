@@ -7,6 +7,17 @@ measured migration.
 It is not a generic "rewrite everything with AI" skill. A keep, shadow-test,
 hybrid, or reject decision is a successful outcome.
 
+## What Is Jev?
+
+Jev is TypeSafe AI's non-generative decision model. It accepts application
+`state` and typed `choice`, `noul`, or `score` questions, then returns typed
+answers, calibrated probabilities, and confidence. It does not chat, generate
+prose or code, execute actions, or perform long-chain planning.
+
+That distinction matters because an agent that has never seen Jev may otherwise
+assume it is another LLM. This skill does not rely on pretrained knowledge of
+Jev; it contains the required API and migration guidance.
+
 ## What It Handles
 
 Use the skill when a project contains:

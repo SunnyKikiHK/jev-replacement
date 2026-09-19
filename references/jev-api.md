@@ -13,6 +13,13 @@ Use the live documentation as the source of truth:
 The provider details below were verified on 2026-09-19. Recheck them when exact
 model IDs or endpoints matter.
 
+## What Jev Is
+
+Jev is TypeSafe AI's first System One model and a non-generative decision model.
+It evaluates application `state` and returns typed answers for `choice`, `noul`,
+or `score` questions. It does not generate prose or code, explain its reasoning,
+choose and execute actions, or behave like a chat model.
+
 ## Request Shape
 
 Jev accepts a `state` and a record of `questions`.

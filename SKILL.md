@@ -1,6 +1,6 @@
 ---
 name: jev-replacement
-description: Evaluate whether TypeSafe's Jev decision model should replace or augment bounded semantic decisions currently handled by brittle if/else rules, trained classifiers such as BERT, embedding rerankers, or LLM prompt-and-parse steps. Use when the user asks whether Jev fits classification, routing, scoring, ranking, moderation, verification, or candidate selection, or requests a Jev migration plan, shadow test, implementation, and before-and-after evaluation. A keep, hybrid, or reject decision is valid when deterministic code, local latency, fixed GPU economics, privacy, or availability make migration inappropriate; generic model swaps that do not involve Jev should not trigger this skill.
+description: TypeSafe Jev is a non-generative decision model that accepts application state plus typed choice, noul, or score questions and returns typed answers, calibrated probabilities, and confidence rather than text. Use this skill to evaluate whether Jev should replace or augment bounded semantic decisions handled by brittle if/else rules, BERT-style or other trained classifiers, embedding rerankers, or LLM prompt-and-parse steps. It covers fit assessment, keep, shadow-test, hybrid, or migrate planning, implementation behind a rollback-safe adapter, and before-and-after evaluation of quality, confidence, latency, cost, and failures. Do not use it for generic model swaps that do not involve Jev, or for exact arithmetic, authorization, side effects, free-form generation, long-chain planning, or multimodal tasks.
 ---
 
 # Jev Replacement
@@ -8,6 +8,19 @@ description: Evaluate whether TypeSafe's Jev decision model should replace or au
 Migrate only the parts of an existing project where Jev is a better fit than the
 current implementation. Treat migration as a measured refactor, not a wholesale
 rewrite.
+
+## What Jev Is
+
+Jev is TypeSafe AI's non-generative decision model. It accepts application
+`state` plus typed `choice`, `noul`, or `score` questions and returns typed
+values, calibrated probabilities, and confidence. It does not chat, write prose
+or code, produce explanations, execute actions, or perform long-chain planning.
+Never call Jev through a normal chat-completions endpoint.
+
+Do not rely on pretrained knowledge of Jev. Read
+[references/jev-api.md](references/jev-api.md) before writing integration code.
+Recheck the live TypeSafe or OpenRouter documentation when exact model IDs,
+limits, schemas, or provider behavior matter.
 
 ## Decision Outcomes
 
@@ -42,7 +55,7 @@ supports migration:
 
 Inspect the project before editing. Identify semantic decisions currently made by
 plain `if/else`, heuristics, classical ML, neural classifiers, BERT-style models,
-embeddings, or LLM prompts that parse text into values.
+embedding-based rerankers, or LLM prompts that parse text into values.
 
 Before changing behavior, capture the strongest available baseline:
 
