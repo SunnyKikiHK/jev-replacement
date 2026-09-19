@@ -91,7 +91,7 @@ PATTERNS: list[tuple[str, str, re.Pattern[str]]] = [
         re.compile(
             r"\b(if|elif|else if)\b.*"
             r"(contains|includes|match|regex|keyword|"
-            r"label|category|intent|topic)",
+            r"label|category|intent|topic|['\"][^'\"]+['\"]\s+in\s+)",
             re.IGNORECASE,
         ),
     ),
