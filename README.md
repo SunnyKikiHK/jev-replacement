@@ -55,6 +55,12 @@ Skills CLI:
 npx skills add SunnyKikiHK/jev-replacement --skill jev-replacement
 ```
 
+Verify the available skill without installing it:
+
+```bash
+npx skills add SunnyKikiHK/jev-replacement --skill jev-replacement --list
+```
+
 Invoke it explicitly with:
 
 ```text
