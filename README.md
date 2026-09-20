@@ -4,7 +4,7 @@
 replace or augment an existing semantic decision, then proving the result with a
 measured migration.
 
-Current skill version: `0.2.0`.
+Current skill version: `0.2.1`.
 
 It is not a generic "rewrite everything with AI" skill. A keep, shadow-test,
 hybrid, or reject decision is a successful outcome.

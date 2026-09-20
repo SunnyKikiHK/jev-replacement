@@ -2,7 +2,7 @@
 name: jev-replacement
 license: MIT
 metadata:
-  version: "0.2.0"
+  version: "0.2.1"
   short-description: "Evaluate and migrate bounded decisions to TypeSafe Jev"
 description: TypeSafe Jev is a non-generative decision model that accepts application state plus typed choice, noul, or score questions and returns typed answers, calibrated probabilities, and confidence rather than text. Use this skill to evaluate whether Jev should replace or augment bounded semantic decisions handled by brittle if/else rules, BERT-style or other trained classifiers, embedding rerankers, or LLM prompt-and-parse steps. It covers fit assessment, keep, shadow-test, hybrid, or migrate planning, implementation behind a rollback-safe adapter, and before-and-after evaluation of quality, confidence, latency, cost, and failures. Do not use it for generic model swaps that do not involve Jev, or for exact arithmetic, authorization, side effects, free-form generation, long-chain planning, or multimodal tasks.
 ---
