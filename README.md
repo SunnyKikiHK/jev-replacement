@@ -142,6 +142,13 @@ The skill itself is validated with the Codex `skill-creator` validator.
 GitHub Actions runs the unit tests, Python compilation, ASCII checks, and a
 committed-secret scan on every push and pull request.
 
+For a repository-owned validation pass that does not depend on external
+packages, run:
+
+```bash
+python scripts/validate_skill.py .
+```
+
 ## Forward Tests
 
 The skill was evaluated in two independent trial rounds:
