@@ -4,12 +4,21 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 from collections import Counter
 from pathlib import Path
 from typing import Any, Callable
 
-from config import CATEGORIES, DATASET_PATH, EXAMPLE_DIR
+from config import CATEGORIES, DATASET_PATH, EXAMPLE_DIR, REPO_ROOT
 from llm_classifier import ClassificationResult, classify_llm
+
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
+from scripts.evaluate_predictions import (  # noqa: E402
+    bootstrap_delta_intervals,
+    per_label_deltas,
+)
 
 
 def load_dataset(path: Path = DATASET_PATH) -> list[dict[str, str]]:
@@ -163,6 +172,27 @@ def compare_payloads(
 ) -> dict[str, Any]:
     baseline_metrics = baseline["metrics"]
     candidate_metrics = candidate["metrics"]
+    gold = {
+        result["id"]: {"id": result["id"], "label": result["expected"]}
+        for result in baseline["results"]
+    }
+    baseline_predictions = {
+        result["id"]: {
+            "id": result["id"],
+            "predicted": result["predicted"],
+            "error": result["error"],
+        }
+        for result in baseline["results"]
+    }
+    candidate_predictions = {
+        result["id"]: {
+            "id": result["id"],
+            "predicted": result["predicted"],
+            "error": result["error"],
+        }
+        for result in candidate["results"]
+    }
+
     return {
         "accuracy_delta": round(
             candidate_metrics["accuracy"] - baseline_metrics["accuracy"], 4
@@ -184,6 +214,16 @@ def compare_payloads(
         )
         if baseline_metrics["cost_usd"]["mean_per_request"]
         else None,
+        "per_label_delta": per_label_deltas(baseline_metrics, candidate_metrics),
+        "bootstrap": bootstrap_delta_intervals(
+            gold,
+            baseline_predictions,
+            candidate_predictions,
+            label_field="label",
+            prediction_field="predicted",
+            samples=1000,
+            seed=42,
+        ),
     }
 
 
@@ -241,4 +281,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

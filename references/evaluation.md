@@ -64,9 +64,10 @@ not enough to claim improvement.
 - Keep a separate threshold-selection split when confidence gating is used.
 - Re-test on production-like language, length, and distribution shifts.
 
-The bundled evaluator is a starting point. For large evaluations, add bootstrap
-confidence intervals, expected calibration error, p99 latency, and per-label
-regression deltas.
+The bundled evaluator reports paired bootstrap confidence intervals for
+accuracy and macro-F1 deltas, plus per-label precision, recall, and F1
+regressions. For larger production evaluations, also add expected calibration
+error and p99 latency.
 
 ## Acceptance Gate
 

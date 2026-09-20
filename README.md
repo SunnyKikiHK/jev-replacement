@@ -123,10 +123,11 @@ Before constructing `state` from user data or production records, read
 
 The included experiment found:
 
-- accuracy: `0.95` to `1.00`;
-- macro F1: `0.9495` to `1.0000`;
-- p50 latency: `613.58 ms` to `307.06 ms`;
-- mean cost: `1.27x` higher.
+- accuracy: `0.90` to `1.00`;
+- macro F1: `0.9028` to `1.0000`;
+- p50 latency: `716.34 ms` to `308.23 ms`;
+- mean cost: `1.55x` higher;
+- 95% bootstrap accuracy-delta interval: `[0.00, 0.25]`.
 
 The result was recorded as a partial success: Jev passed quality and latency
 gates but failed the cost gate for short single-message requests. The LLM path

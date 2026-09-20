@@ -11,18 +11,18 @@
     "provider_errors": 0,
     "missing_predictions": 0,
     "latency_ms": {
-      "mean": 337.36,
-      "p50": 307.06,
-      "p95": 614.43
+      "mean": 365.16,
+      "p50": 308.23,
+      "p95": 1297.2
     },
     "cost_usd": {
       "total": 0.0003801,
       "mean_per_request": 1.9e-05
     },
     "confidence": {
-      "mean": 0.9685,
-      "accepted_at_0_8": 19,
-      "coverage_at_0_8": 0.95,
+      "mean": 0.967,
+      "accepted_at_0_8": 18,
+      "coverage_at_0_8": 0.9,
       "accuracy_at_0_8": 1.0
     },
     "per_label": {
@@ -65,11 +65,11 @@
       "expected": "billing",
       "predicted": "billing",
       "confidence": 1.0,
-      "latency_ms": 297.14,
+      "latency_ms": 341.24,
       "input_tokens": 455,
       "output_tokens": 46,
       "cost_usd": 1.911e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'billing': 1, 'bug': 0, 'account': 0, 'feature_request': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'billing': 1, 'account': 0, 'bug': 0, 'feature_request': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -78,11 +78,11 @@
       "expected": "billing",
       "predicted": "billing",
       "confidence": 1.0,
-      "latency_ms": 328.81,
+      "latency_ms": 228.91,
       "input_tokens": 453,
       "output_tokens": 46,
       "cost_usd": 1.9026e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'feature_request': 0, 'bug': 0, 'billing': 1, 'account': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'billing': 1, 'bug': 0, 'account': 0, 'feature_request': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -91,11 +91,11 @@
       "expected": "billing",
       "predicted": "billing",
       "confidence": 1.0,
-      "latency_ms": 233.65,
+      "latency_ms": 281.22,
       "input_tokens": 456,
       "output_tokens": 46,
       "cost_usd": 1.9152e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'feature_request': 0, 'billing': 1, 'bug': 0, 'account': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'account': 0, 'billing': 1, 'bug': 0, 'feature_request': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -103,12 +103,12 @@
       "text": "My card was declined, but the app still says the payment succeeded.",
       "expected": "billing",
       "predicted": "billing",
-      "confidence": 0.65,
-      "latency_ms": 256.29,
+      "confidence": 0.64,
+      "latency_ms": 308.46,
       "input_tokens": 455,
       "output_tokens": 46,
       "cost_usd": 1.911e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'feature_request': 0, 'account': 0, 'bug': 0.26, 'billing': 0.74}, 'confidence': 0.65}",
+      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'account': 0, 'billing': 0.73, 'feature_request': 0, 'bug': 0.27}, 'confidence': 0.64}",
       "error": null
     },
     {
@@ -117,11 +117,11 @@
       "expected": "billing",
       "predicted": "billing",
       "confidence": 1.0,
-      "latency_ms": 501.4,
+      "latency_ms": 225.76,
       "input_tokens": 456,
       "output_tokens": 46,
       "cost_usd": 1.9152e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'bug': 0, 'feature_request': 0, 'account': 0, 'billing': 1}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'billing', 'probabilities': {'billing': 1, 'bug': 0, 'account': 0, 'feature_request': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -130,11 +130,11 @@
       "expected": "account",
       "predicted": "account",
       "confidence": 1.0,
-      "latency_ms": 523.18,
+      "latency_ms": 286.88,
       "input_tokens": 452,
       "output_tokens": 46,
       "cost_usd": 1.8984e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'billing': 0, 'bug': 0, 'account': 1, 'feature_request': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'feature_request': 0, 'account': 1, 'bug': 0, 'billing': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -143,11 +143,11 @@
       "expected": "account",
       "predicted": "account",
       "confidence": 1.0,
-      "latency_ms": 409.35,
+      "latency_ms": 307.26,
       "input_tokens": 452,
       "output_tokens": 46,
       "cost_usd": 1.8984e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'feature_request': 0, 'billing': 0, 'bug': 0, 'account': 1}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'billing': 0, 'bug': 0, 'feature_request': 0, 'account': 1}, 'confidence': 1}",
       "error": null
     },
     {
@@ -156,11 +156,11 @@
       "expected": "account",
       "predicted": "account",
       "confidence": 1.0,
-      "latency_ms": 239.73,
+      "latency_ms": 1297.2,
       "input_tokens": 450,
       "output_tokens": 46,
       "cost_usd": 1.89e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'billing': 0, 'bug': 0, 'feature_request': 0, 'account': 1}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'account': 1, 'billing': 0, 'bug': 0, 'feature_request': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -169,11 +169,11 @@
       "expected": "account",
       "predicted": "account",
       "confidence": 0.99,
-      "latency_ms": 373.55,
+      "latency_ms": 340.7,
       "input_tokens": 453,
       "output_tokens": 46,
       "cost_usd": 1.9026e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'feature_request': 0, 'billing': 0, 'account': 1, 'bug': 0}, 'confidence': 0.99}",
+      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'billing': 0, 'feature_request': 0, 'bug': 0.01, 'account': 0.99}, 'confidence': 0.99}",
       "error": null
     },
     {
@@ -182,11 +182,11 @@
       "expected": "account",
       "predicted": "account",
       "confidence": 1.0,
-      "latency_ms": 307.36,
+      "latency_ms": 306.03,
       "input_tokens": 452,
       "output_tokens": 46,
       "cost_usd": 1.8984e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'feature_request': 0, 'account': 1, 'bug': 0, 'billing': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'account', 'probabilities': {'billing': 0, 'bug': 0, 'feature_request': 0, 'account': 1}, 'confidence': 1}",
       "error": null
     },
     {
@@ -195,11 +195,11 @@
       "expected": "bug",
       "predicted": "bug",
       "confidence": 1.0,
-      "latency_ms": 222.62,
+      "latency_ms": 318.28,
       "input_tokens": 452,
       "output_tokens": 46,
       "cost_usd": 1.8984e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'account': 0, 'feature_request': 0, 'bug': 1, 'billing': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'account': 0, 'feature_request': 0, 'bug': 1}, 'confidence': 1}",
       "error": null
     },
     {
@@ -208,11 +208,11 @@
       "expected": "bug",
       "predicted": "bug",
       "confidence": 0.99,
-      "latency_ms": 289.69,
+      "latency_ms": 598.14,
       "input_tokens": 452,
       "output_tokens": 46,
       "cost_usd": 1.8984e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'bug': 0.99, 'feature_request': 0, 'account': 0.01}, 'confidence': 0.99}",
+      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'feature_request': 0, 'account': 0.01, 'bug': 0.99}, 'confidence': 0.99}",
       "error": null
     },
     {
@@ -221,11 +221,11 @@
       "expected": "bug",
       "predicted": "bug",
       "confidence": 1.0,
-      "latency_ms": 614.43,
+      "latency_ms": 253.03,
       "input_tokens": 451,
       "output_tokens": 46,
       "cost_usd": 1.8942e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'bug': 1, 'feature_request': 0, 'account': 0, 'billing': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'account': 0, 'feature_request': 0, 'bug': 1}, 'confidence': 1}",
       "error": null
     },
     {
@@ -234,11 +234,11 @@
       "expected": "bug",
       "predicted": "bug",
       "confidence": 1.0,
-      "latency_ms": 307.61,
+      "latency_ms": 263.82,
       "input_tokens": 452,
       "output_tokens": 46,
       "cost_usd": 1.8984e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'account': 0, 'bug': 1, 'feature_request': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'account': 0, 'bug': 1, 'billing': 0, 'feature_request': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -246,12 +246,12 @@
       "text": "The 'Forgot password' link returns a 500 error.",
       "expected": "bug",
       "predicted": "bug",
-      "confidence": 0.98,
-      "latency_ms": 410.17,
+      "confidence": 0.97,
+      "latency_ms": 308.23,
       "input_tokens": 455,
       "output_tokens": 46,
       "cost_usd": 1.911e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'account': 0.02, 'bug': 0.98, 'feature_request': 0}, 'confidence': 0.98}",
+      "raw_response": "{'type': 'choice', 'choice': 'bug', 'probabilities': {'billing': 0, 'bug': 0.98, 'account': 0.02, 'feature_request': 0}, 'confidence': 0.97}",
       "error": null
     },
     {
@@ -260,11 +260,11 @@
       "expected": "feature_request",
       "predicted": "feature_request",
       "confidence": 1.0,
-      "latency_ms": 305.66,
+      "latency_ms": 382.6,
       "input_tokens": 451,
       "output_tokens": 47,
       "cost_usd": 1.8942e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'feature_request': 1, 'bug': 0, 'account': 0, 'billing': 0}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'account': 0, 'bug': 0, 'billing': 0, 'feature_request': 1}, 'confidence': 1}",
       "error": null
     },
     {
@@ -272,12 +272,12 @@
       "text": "Can you support SSO with Okta?",
       "expected": "feature_request",
       "predicted": "feature_request",
-      "confidence": 0.8,
-      "latency_ms": 236.41,
+      "confidence": 0.77,
+      "latency_ms": 335.54,
       "input_tokens": 450,
       "output_tokens": 47,
       "cost_usd": 1.89e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'feature_request': 0.85, 'billing': 0, 'account': 0.15, 'bug': 0}, 'confidence': 0.8}",
+      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'bug': 0, 'feature_request': 0.83, 'account': 0.17, 'billing': 0}, 'confidence': 0.77}",
       "error": null
     },
     {
@@ -285,12 +285,12 @@
       "text": "I'd like to bulk import contacts from a CSV file.",
       "expected": "feature_request",
       "predicted": "feature_request",
-      "confidence": 0.97,
-      "latency_ms": 276.63,
+      "confidence": 0.98,
+      "latency_ms": 304.27,
       "input_tokens": 453,
       "output_tokens": 47,
       "cost_usd": 1.9026e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'account': 0.02, 'bug': 0, 'billing': 0, 'feature_request': 0.98}, 'confidence': 0.97}",
+      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'feature_request': 0.99, 'billing': 0, 'account': 0.01, 'bug': 0}, 'confidence': 0.98}",
       "error": null
     },
     {
@@ -299,11 +299,11 @@
       "expected": "feature_request",
       "predicted": "feature_request",
       "confidence": 1.0,
-      "latency_ms": 306.46,
+      "latency_ms": 308.85,
       "input_tokens": 450,
       "output_tokens": 47,
       "cost_usd": 1.89e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'bug': 0, 'account': 0, 'billing': 0, 'feature_request': 1}, 'confidence': 1}",
+      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'account': 0, 'feature_request': 1, 'bug': 0, 'billing': 0}, 'confidence': 1}",
       "error": null
     },
     {
@@ -311,12 +311,12 @@
       "text": "Can we get webhook support for payment events?",
       "expected": "feature_request",
       "predicted": "feature_request",
-      "confidence": 0.99,
-      "latency_ms": 307.06,
+      "confidence": 1.0,
+      "latency_ms": 306.8,
       "input_tokens": 450,
       "output_tokens": 47,
       "cost_usd": 1.89e-05,
-      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'billing': 0.01, 'bug': 0, 'feature_request': 0.99, 'account': 0}, 'confidence': 0.99}",
+      "raw_response": "{'type': 'choice', 'choice': 'feature_request', 'probabilities': {'account': 0, 'bug': 0, 'billing': 0, 'feature_request': 1}, 'confidence': 1}",
       "error": null
     }
   ]

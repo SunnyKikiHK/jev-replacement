@@ -1,6 +1,44 @@
 {
-  "accuracy_delta": 0.05,
-  "macro_f1_delta": 0.0505,
-  "latency_p50_ratio": 0.5004,
-  "cost_ratio": 1.2709
+  "accuracy_delta": 0.1,
+  "macro_f1_delta": 0.0972,
+  "latency_p50_ratio": 0.4303,
+  "cost_ratio": 1.5498,
+  "per_label_delta": {
+    "account": {
+      "precision": 0.0,
+      "recall": 0.2,
+      "f1": 0.1111
+    },
+    "billing": {
+      "precision": 0.0,
+      "recall": 0.2,
+      "f1": 0.1111
+    },
+    "bug": {
+      "precision": 0.2857,
+      "recall": 0.0,
+      "f1": 0.1667
+    },
+    "feature_request": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0
+    }
+  },
+  "bootstrap": {
+    "samples": 1000,
+    "confidence_level": 0.95,
+    "seed": 42,
+    "completed_pairs": 20,
+    "accuracy_delta": {
+      "point": 0.1,
+      "lower": 0.0,
+      "upper": 0.25
+    },
+    "macro_f1_delta": {
+      "point": 0.0972,
+      "lower": 0.0,
+      "upper": 0.3005
+    }
+  }
 }

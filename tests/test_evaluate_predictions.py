@@ -2,7 +2,11 @@ from __future__ import annotations
 
 import unittest
 
-from scripts.evaluate_predictions import metrics
+from scripts.evaluate_predictions import (
+    bootstrap_delta_intervals,
+    metrics,
+    per_label_deltas,
+)
 
 
 class EvaluatePredictionsTests(unittest.TestCase):
@@ -60,7 +64,28 @@ class EvaluatePredictionsTests(unittest.TestCase):
         self.assertEqual(candidate_metrics["confidence"]["0.8"]["coverage"], 0.6667)
         self.assertEqual(candidate_metrics["confidence"]["0.8"]["accuracy"], 1.0)
 
+        deltas = per_label_deltas(baseline_metrics, candidate_metrics)
+        self.assertGreater(deltas["b"]["f1"], 0)
+
+        intervals = bootstrap_delta_intervals(
+            gold,
+            baseline,
+            candidate,
+            label_field="label",
+            prediction_field="predicted",
+            samples=100,
+            seed=7,
+        )
+        self.assertEqual(intervals["completed_pairs"], 3)
+        self.assertLessEqual(
+            intervals["accuracy_delta"]["lower"],
+            intervals["accuracy_delta"]["upper"],
+        )
+        self.assertLessEqual(
+            intervals["macro_f1_delta"]["lower"],
+            intervals["macro_f1_delta"]["upper"],
+        )
+
 
 if __name__ == "__main__":
     unittest.main()
-

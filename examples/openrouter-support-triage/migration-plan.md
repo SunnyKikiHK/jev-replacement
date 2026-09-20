@@ -29,13 +29,14 @@ Dataset: 20 labeled support messages, five per category.
 
 Baseline metrics from `evaluation-llm.json`:
 
-- accuracy: `0.95`;
-- macro F1: `0.9495`;
-- p50 latency: `613.58 ms`;
-- p95 latency: `961.85 ms`;
-- mean cost: `$0.00001495` per request.
+- accuracy: `0.90`;
+- macro F1: `0.9028`;
+- p50 latency: `716.34 ms`;
+- p95 latency: `5938.64 ms`;
+- mean cost: `$0.00001226` per request.
 
-The only baseline error was `account-2fa`, predicted as `bug`.
+The baseline errors were `billing-declined` and `account-2fa`, both predicted
+as `bug`.
 
 ## Design
 
