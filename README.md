@@ -175,3 +175,7 @@ The skill intentionally distinguishes stage-level replacements:
 - a cross-encoder reranker may be a shadow-test candidate;
 - LLM generation must remain generative;
 - deterministic policy and arithmetic remain in code.
+
+## License
+
+This repository is licensed under the MIT License. See [LICENSE](LICENSE).
