@@ -10,6 +10,10 @@ from pathlib import Path
 
 NAME_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 LINK_RE = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+VERSION_RE = re.compile(
+    r'(?m)^metadata:\s*\n(?:[ \t]+[^\n]*\n)*?[ \t]+version:\s*["\']?'
+    r"(\d+\.\d+\.\d+)"
+)
 IGNORED_ASCII_DIRS = {".git", ".validation-deps", "__pycache__"}
 ASCII_SUFFIXES = {".md", ".py", ".json", ".jsonl", ".yaml", ".yml", ".toml"}
 
@@ -79,6 +83,8 @@ def validate(skill_root: Path) -> list[str]:
         failures.append("Frontmatter description exceeds 1024 characters.")
     if not license_name:
         failures.append("Frontmatter license is required.")
+    if not VERSION_RE.search(skill_file.read_text(encoding="utf-8")):
+        failures.append("Frontmatter metadata.version must be semantic versioning.")
     if "TODO" in body:
         failures.append("SKILL.md contains an unfinished TODO marker.")
 
@@ -109,4 +115,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-

@@ -20,6 +20,8 @@ class ValidateSkillTests(unittest.TestCase):
                 "---\n"
                 "name: sample-skill\n"
                 "license: MIT\n"
+                "metadata:\n"
+                '  version: "0.1.0"\n'
                 'description: "Use this skill for a bounded sample task."\n'
                 "---\n\n"
                 "# Sample\n",
@@ -40,6 +42,8 @@ class ValidateSkillTests(unittest.TestCase):
                 "---\n"
                 "name: WrongName\n"
                 "license: MIT\n"
+                "metadata:\n"
+                '  version: "0.1.0"\n'
                 'description: "Use this skill for a bounded sample task."\n'
                 "---\n\n"
                 "# Sample\n\n"
@@ -54,4 +58,3 @@ class ValidateSkillTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-
