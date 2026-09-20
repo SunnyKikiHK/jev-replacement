@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import os
 from pathlib import Path
 
 
@@ -10,7 +11,7 @@ REPO_ROOT = EXAMPLE_DIR.parents[1]
 DATASET_PATH = EXAMPLE_DIR / "dataset.jsonl"
 
 LLM_MODEL = "meta-llama/llama-3.3-70b-instruct"
-JE_V_MODEL = "~typesafe/jev-latest"
+JE_V_MODEL = os.environ.get("JE_V_MODEL", "typesafe/jev-1.13")
 
 CATEGORIES = {
     "account": "Login, profile, security, permissions, or account access.",
@@ -51,4 +52,3 @@ JE_V_CRITERIA = {
         "product enhancement."
     ),
 }
-

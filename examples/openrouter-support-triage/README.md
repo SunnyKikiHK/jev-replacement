@@ -35,6 +35,9 @@ python evaluate.py --mode jev
 
 The command writes `evaluation-jev.json`.
 
+The benchmark uses pinned model IDs recorded in `model-manifest.json`. Set
+`JE_V_MODEL` to override the candidate model for a separate experiment.
+
 To run both in one process and print a comparison:
 
 ```bash

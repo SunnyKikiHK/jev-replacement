@@ -10,7 +10,7 @@ Baseline: `meta-llama/llama-3.3-70b-instruct` through OpenRouter chat
 completions.
 
 Replacement: Jev through OpenRouter Decisions API using
-`~typesafe/jev-latest`.
+`typesafe/jev-1.13`.
 
 Both implementations ran in the same process against the same dataset.
 
@@ -18,21 +18,20 @@ Both implementations ran in the same process against the same dataset.
 
 | Metric | LLM baseline | Jev | Change |
 | --- | ---: | ---: | ---: |
-| Accuracy | 0.9000 | 1.0000 | +0.1000 |
-| Macro F1 | 0.9028 | 1.0000 | +0.0972 |
-| p50 latency | 675.66 ms | 253.13 ms | 0.3746x |
-| p95 latency | 5486.97 ms | 337.23 ms | 0.0615x |
-| Mean cost | $0.00001250 | $0.00001900 | 1.52x |
+| Accuracy | 0.9500 | 1.0000 | +0.0500 |
+| Macro F1 | 0.9495 | 1.0000 | +0.0505 |
+| p50 latency | 613.58 ms | 307.06 ms | 0.5004x |
+| p95 latency | 961.85 ms | 614.43 ms | 0.6388x |
+| Mean cost | $0.00001495 | $0.00001900 | 1.2709x |
 | Provider errors | 0 | 0 | none |
 
 ## Confidence
 
-Jev assigned confidence `>= 0.8` to 18 of 20 cases:
+Jev assigned confidence `>= 0.8` to 19 of 20 cases:
 
-- coverage at the threshold: `0.90`;
+- coverage at the threshold: `0.95`;
 - accuracy on accepted cases: `1.00`;
-- `billing-declined`: confidence `0.55`, predicted `billing` correctly;
-- `feature-sso`: confidence `0.76`, predicted `feature_request` correctly.
+- `billing-declined`: confidence `0.65`, predicted `billing` correctly.
 
 The low-confidence cases should route to the LLM or human review in a production
 policy, even though both happened to be correct here.
@@ -53,8 +52,8 @@ policy, even though both happened to be correct here.
 The replacement is a **partial success**, not an unconditional replacement.
 
 - Jev improved task quality on this dataset.
-- Jev reduced p50 latency by about 2.7x and p95 latency by about 16x.
-- For short, single-message requests, Jev cost about 1.52x more because the
+- Jev reduced p50 latency by about 2.0x and p95 latency by about 1.6x.
+- For short, single-message requests, Jev cost about 1.27x more because the
   question definitions and criteria add fixed input tokens.
 - The LLM path must remain available as a fallback for low-confidence,
   provider-error, and cost-sensitive cases.
@@ -69,4 +68,3 @@ cost advantage.
 - `evaluation-llm.json`: full baseline rows and metrics.
 - `evaluation-jev.json`: full Jev rows and metrics.
 - `comparison.json`: machine-readable metric deltas.
-

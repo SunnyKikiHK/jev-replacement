@@ -119,10 +119,10 @@ record.
 
 The included experiment found:
 
-- accuracy: `0.90` to `1.00`;
-- macro F1: `0.9028` to `1.0000`;
-- p50 latency: `675.66 ms` to `253.13 ms`;
-- mean cost: `1.52x` higher.
+- accuracy: `0.95` to `1.00`;
+- macro F1: `0.9495` to `1.0000`;
+- p50 latency: `613.58 ms` to `307.06 ms`;
+- mean cost: `1.27x` higher.
 
 The result was recorded as a partial success: Jev passed quality and latency
 gates but failed the cost gate for short single-message requests. The LLM path

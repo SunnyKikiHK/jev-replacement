@@ -31,9 +31,9 @@ Baseline metrics from `evaluation-llm.json`:
 
 - accuracy: `0.95`;
 - macro F1: `0.9495`;
-- p50 latency: `606.34 ms`;
-- p95 latency: `8844.79 ms`;
-- mean cost: `$0.00001574` per request.
+- p50 latency: `613.58 ms`;
+- p95 latency: `961.85 ms`;
+- mean cost: `$0.00001495` per request.
 
 The only baseline error was `account-2fa`, predicted as `bug`.
 
@@ -68,7 +68,7 @@ Confidence gate: auto-accept at confidence `>= 0.8` during evaluation. The
 example does not yet route low-confidence answers to the LLM, so the raw Jev
 accuracy remains visible.
 
-Provider: OpenRouter Decisions API with `~typesafe/jev-latest`.
+Provider: OpenRouter Decisions API with the pinned `typesafe/jev-1.13` model.
 
 ## Acceptance Gate
 
@@ -92,4 +92,3 @@ human reviewer.
 3. Re-run both implementations on `dataset.jsonl`.
 4. Compare accuracy, macro F1, latency, cost, and confidence coverage.
 5. Keep the LLM path as fallback and report the measured result.
-
