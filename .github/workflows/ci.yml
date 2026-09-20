@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Run unit tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Compile Python files
+        run: |
+          python -m compileall -q scripts tests examples/openrouter-support-triage
+
+      - name: Check ASCII hygiene
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          paths = [
+              Path("SKILL.md"),
+              Path("README.md"),
+              Path("agents"),
+              Path("references"),
+              Path("scripts"),
+              Path("tests"),
+              Path("evals"),
+          ]
+          failures = []
+          for path in paths:
+              candidates = [path] if path.is_file() else path.rglob("*") if path.exists() else []
+              for candidate in candidates:
+                  if not candidate.is_file():
+                      continue
+                  try:
+                      candidate.read_text(encoding="ascii")
+                  except UnicodeDecodeError:
+                      failures.append(str(candidate))
+          if failures:
+              raise SystemExit("Non-ASCII files: " + ", ".join(failures))
+          PY
+
+      - name: Check for committed secrets
+        run: |
+          if git grep -nE 'sk-or-[A-Za-z0-9_-]{20,}' || \
+             git grep -nE 'TYPESAFE_API_KEY=[^$[:space:]]+' -- ':(exclude).github/workflows/ci.yml'; then
+            echo "Potential committed secret detected."
+            exit 1
+          fi

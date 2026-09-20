@@ -139,6 +139,8 @@ python scripts/evaluate_rankings.py \
 ```
 
 The skill itself is validated with the Codex `skill-creator` validator.
+GitHub Actions runs the unit tests, Python compilation, ASCII checks, and a
+committed-secret scan on every push and pull request.
 
 ## Forward Tests
 
