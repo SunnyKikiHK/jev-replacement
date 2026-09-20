@@ -1,0 +1,13 @@
+{
+  "description": "Codex agent skill that evaluates TypeSafe Jev for replacing brittle semantic if/else rules, trained classifiers, embedding rerankers, and LLM prompt-and-parse decisions. It produces keep, shadow-test, hybrid, or migrate plans and benchmarks quality, confidence, latency, cost, and failures before rollout.",
+  "homepage": "",
+  "topics": [
+    "codex-skill",
+    "agent-skills",
+    "typesafe",
+    "jev",
+    "decision-model",
+    "migration"
+  ]
+}
+

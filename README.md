@@ -212,3 +212,19 @@ The skill intentionally distinguishes stage-level replacements:
 ## License
 
 This repository is licensed under the MIT License. See [LICENSE](LICENSE).
+
+## Repository Metadata
+
+The intended GitHub description and topics are stored in
+[.github/repository-metadata.json](.github/repository-metadata.json). Preview the
+GitHub API requests with:
+
+```bash
+python scripts/update_repository_metadata.py
+```
+
+Apply them with a GitHub token that has repository administration permission:
+
+```bash
+GITHUB_TOKEN=<token> python scripts/update_repository_metadata.py --apply
+```
