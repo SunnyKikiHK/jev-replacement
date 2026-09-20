@@ -68,7 +68,10 @@ class JevClientTests(unittest.TestCase):
         }
         with patch(
             "scripts.jev_client._post",
-            side_effect=[JevError("HTTP 429: retry"), response],
+            side_effect=[
+                JevError("HTTP 429: retry", status_code=429),
+                response,
+            ],
         ) as post, patch("scripts.jev_client.time.sleep") as sleep:
             decide(
                 "state",
@@ -81,6 +84,33 @@ class JevClientTests(unittest.TestCase):
 
         self.assertEqual(post.call_count, 2)
         sleep.assert_called_once()
+
+    def test_retry_after_header_controls_delay(self) -> None:
+        response = {
+            "answers": {"q": {"type": "noul", "noul": 0.5}},
+            "model": "jev-latest",
+            "usage": {},
+        }
+        with patch(
+            "scripts.jev_client._post",
+            side_effect=[
+                JevError(
+                    "HTTP 429: retry",
+                    status_code=429,
+                    retry_after=2.5,
+                ),
+                response,
+            ],
+        ), patch("scripts.jev_client.time.sleep") as sleep:
+            decide(
+                "state",
+                {"q": {"type": "noul", "instructions": "ok?"}},
+                provider="typesafe",
+                api_key="secret",
+                retries=1,
+            )
+
+        sleep.assert_called_once_with(2.5)
 
     def test_auth_error_does_not_retry(self) -> None:
         with patch(
@@ -110,4 +140,3 @@ class JevClientTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

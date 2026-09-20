@@ -9,6 +9,8 @@ import os
 import random
 import time
 from dataclasses import dataclass
+from datetime import datetime, timezone
+from email.utils import parsedate_to_datetime
 from pathlib import Path
 from typing import Any
 from urllib.error import HTTPError, URLError
@@ -41,6 +43,17 @@ class DecisionResponse:
 class JevError(RuntimeError):
     """Raised when Jev cannot return a usable decision response."""
 
+    def __init__(
+        self,
+        message: str,
+        *,
+        status_code: int | None = None,
+        retry_after: float | None = None,
+    ) -> None:
+        super().__init__(message)
+        self.status_code = status_code
+        self.retry_after = retry_after
+
 
 def _provider_name(provider: str) -> str:
     if provider == "auto":
@@ -64,6 +77,24 @@ def _headers(provider: str, api_key: str) -> dict[str, str]:
     return headers
 
 
+def _parse_retry_after(value: str | None) -> float | None:
+    if not value:
+        return None
+    value = value.strip()
+    try:
+        return max(0.0, float(value))
+    except ValueError:
+        pass
+
+    try:
+        retry_at = parsedate_to_datetime(value)
+    except (TypeError, ValueError):
+        return None
+    if retry_at.tzinfo is None:
+        retry_at = retry_at.replace(tzinfo=timezone.utc)
+    return max(0.0, (retry_at - datetime.now(timezone.utc)).total_seconds())
+
+
 def _post(
     url: str,
     payload: dict[str, Any],
@@ -81,7 +112,12 @@ def _post(
             return json.loads(response.read().decode("utf-8"))
     except HTTPError as exc:
         body = exc.read().decode("utf-8", errors="replace")
-        raise JevError(f"HTTP {exc.code}: {body}") from exc
+        retry_after = _parse_retry_after(exc.headers.get("Retry-After"))
+        raise JevError(
+            f"HTTP {exc.code}: {body}",
+            status_code=exc.code,
+            retry_after=retry_after,
+        ) from exc
     except URLError as exc:
         raise JevError(f"Connection error: {exc.reason}") from exc
 
@@ -140,18 +176,19 @@ def decide(
             last_error = exc
             message = str(exc)
             retryable = (
-                message.startswith("HTTP 429")
-                or message.startswith("HTTP 500")
-                or message.startswith("HTTP 502")
-                or message.startswith("HTTP 503")
-                or message.startswith("HTTP 504")
-                or message.startswith("HTTP 529")
-                or message.startswith("Connection error:")
+                exc.status_code in {429, 500, 502, 503, 504, 529}
+                or (
+                    exc.status_code is None
+                    and message.startswith("Connection error:")
+                )
             )
             if not retryable or attempt >= retries:
                 raise
-            delay = retry_base_seconds * (2**attempt)
-            delay += random.uniform(0, retry_base_seconds)
+            if exc.retry_after is not None:
+                delay = exc.retry_after
+            else:
+                delay = retry_base_seconds * (2**attempt)
+                delay += random.uniform(0, retry_base_seconds)
             time.sleep(delay)
 
     raise JevError(str(last_error or "Unknown Jev error"))
@@ -204,4 +241,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-
