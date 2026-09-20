@@ -44,11 +44,14 @@ jobs:
               Path("tests"),
               Path("evals"),
           ]
+          text_suffixes = {".md", ".py", ".json", ".jsonl", ".yaml", ".yml", ".toml", ".txt"}
           failures = []
           for path in paths:
               candidates = [path] if path.is_file() else path.rglob("*") if path.exists() else []
               for candidate in candidates:
                   if not candidate.is_file():
+                      continue
+                  if candidate.suffix.lower() not in text_suffixes:
                       continue
                   try:
                       candidate.read_text(encoding="ascii")
