@@ -152,6 +152,11 @@ The skill was evaluated in two independent trial rounds:
 - Round 2 re-tested discovery and the revised guidance for BERT and RAG after
   the first improvements.
 
+Cold-start discovery cases are recorded in
+[evals/discovery-cases.jsonl](evals/discovery-cases.jsonl). They must be run
+without forked conversation context so that the test does not leak prior Jev
+knowledge to the evaluating agent.
+
 The trials found and fixed:
 
 - vague UI metadata that did not communicate shadow testing or no-change

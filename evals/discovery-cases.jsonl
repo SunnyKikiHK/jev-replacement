@@ -1,0 +1,11 @@
+{"id":"explicit-openai-json","request":"Should we replace this OpenAI JSON classifier with Jev?","expected":"invoke","rationale":"Explicit Jev request for an LLM prompt-and-parse replacement."}
+{"id":"explicit-bert","request":"Can TypeSafe Jev replace our BERT intent classifier?","expected":"invoke","rationale":"Explicit Jev request for a trained classifier replacement."}
+{"id":"rag-reranking","request":"Use Jev to rerank RAG passages on a bounded shortlist.","expected":"invoke","rationale":"Explicit Jev request for bounded relevance scoring and ranking."}
+{"id":"ticket-routing-benchmark","request":"Evaluate Jev for support-ticket routing and benchmark it against the current model.","expected":"invoke","rationale":"Explicit Jev fit assessment and before-and-after evaluation."}
+{"id":"deterministic-billing","request":"Replace our overdue-invoice date and amount rules with Jev.","expected":"invoke","rationale":"The skill should trigger to reject unsafe deterministic replacement."}
+{"id":"generic-distilbert-swap","request":"Replace our BERT classifier with DistilBERT.","expected":"not_invoke","rationale":"Generic model swap with no Jev or decision-API boundary."}
+{"id":"product-article","request":"Write a product launch article for our new dashboard.","expected":"not_invoke","rationale":"Generative writing is outside the skill's scope."}
+{"id":"general-jev-explanation","request":"Explain what TypeSafe Jev is.","expected":"not_invoke","rationale":"General product explanation is not a project migration task."}
+{"id":"image-classifier","request":"Evaluate this image classifier for defect detection.","expected":"not_invoke","rationale":"Native multimodal classification is outside Jev's scope."}
+{"id":"llm-guardrail","request":"Use Jev to screen prompts and tool calls for jailbreak or policy risk.","expected":"invoke","rationale":"Explicit Jev request for bounded verification and guardrails."}
+
