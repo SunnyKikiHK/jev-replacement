@@ -78,6 +78,10 @@ The skill supports two Jev providers:
 Use `TYPESAFE_API_KEY` for TypeSafe direct or `OPENROUTER_API_KEY` for OpenRouter.
 Jev must not be called through a normal chat-completions endpoint.
 
+Use [.env.example](.env.example) as the local configuration template. The
+optional `OPENROUTER_HTTP_REFERER` and `OPENROUTER_TITLE` variables control
+OpenRouter attribution headers.
+
 The reusable client is [scripts/jev_client.py](scripts/jev_client.py). It uses
 the native `state` and `questions` contract and retries only transient provider
 errors.
