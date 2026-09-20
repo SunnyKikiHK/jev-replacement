@@ -23,6 +23,10 @@ Do not rely on pretrained knowledge of Jev. Read
 Recheck the live TypeSafe or OpenRouter documentation when exact model IDs,
 limits, schemas, or provider behavior matter.
 
+Read [references/data-redaction.md](references/data-redaction.md) before
+constructing `state` from user data, production records, logs, or internal
+documents.
+
 ## Decision Outcomes
 
 The correct outcome may be:

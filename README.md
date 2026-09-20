@@ -101,6 +101,7 @@ jev-replacement/
 |-- references/
 |   |-- jev-api.md
 |   |-- migration-playbook.md
+|   |-- data-redaction.md
 |   `-- evaluation.md
 |-- scripts/
 |   |-- jev_client.py
@@ -114,6 +115,9 @@ jev-replacement/
 The example compares an OpenRouter LLM with Jev on a 20-case support-triage
 dataset. It includes the migration plan, full prediction rows, and final decision
 record.
+
+Before constructing `state` from user data or production records, read
+[references/data-redaction.md](references/data-redaction.md).
 
 ## Example Result
 
