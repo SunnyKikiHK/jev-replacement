@@ -121,6 +121,8 @@ remains the fallback. See
 
 ## Validation
 
+The bundled scripts require Python 3.10 or newer.
+
 Run the bundled checks:
 
 ```bash

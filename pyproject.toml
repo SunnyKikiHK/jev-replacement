@@ -1,0 +1,11 @@
+[project]
+name = "jev-replacement-skill"
+version = "0.1.0"
+description = "Codex skill for evaluating and migrating bounded decisions to TypeSafe Jev."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "SunnyKikiHK" },
+]
+
